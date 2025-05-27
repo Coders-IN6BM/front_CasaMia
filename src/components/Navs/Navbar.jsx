@@ -12,7 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['REGISTER', 'HOTELES', 'EVENTOS'];
+// Cambiado 'REGISTER' por 'SERVICIOS'
+const pages = ['SERVICIOS', 'HOTELES', 'EVENTOS'];
 const settings = ['Profile', 'Logout'];
 const casaMiaMainBlue = "#2563eb";
 
