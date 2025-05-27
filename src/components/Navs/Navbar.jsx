@@ -38,18 +38,31 @@ export const Navbar = () => {
     setAnchorElUser(null);
   };
 
+  // Manejar navegación de páginas
+  const handlePageClick = (page) => {
+    handleCloseNavMenu();
+    switch (page) {
+      case "SERVICIOS":
+        navigate("/servicios");
+        break;
+      case "HOTELES":
+        navigate("/hotels");
+        break;
+      case "EVENTOS":
+        navigate("/eventos");
+        break;
+      default:
+        break;
+    }
+  };
+
+  // Manejar menú del usuario (Profile y Logout)
   const handleUserMenuClick = (setting) => {
     handleCloseUserMenu();
     if (setting === 'Logout') {
       logout();
-    }
-    // Aquí puedes manejar "Profile" si lo necesitas
-  };
-
-  const handlePageClick = (page) => {
-    handleCloseNavMenu();
-    if (page === "SERVICIOS") {
-      navigate("/servicios");
+    } else if (setting === 'Profile') {
+      navigate("/user");
     }
   };
 
