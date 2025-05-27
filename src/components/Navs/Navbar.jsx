@@ -11,8 +11,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { logout } from "../../shared/hooks/useLogout.jsx";
 
-// Cambiado 'REGISTER' por 'SERVICIOS'
 const pages = ['SERVICIOS', 'HOTELES', 'EVENTOS'];
 const settings = ['Profile', 'Logout'];
 const casaMiaMainBlue = "#2563eb";
@@ -34,6 +34,14 @@ export const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleUserMenuClick = (setting) => {
+    handleCloseUserMenu();
+    if (setting === 'Logout') {
+      logout();
+    }
+    // Aquí puedes manejar "Profile" si lo necesitas
   };
 
   return (
@@ -182,7 +190,7 @@ export const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handleUserMenuClick(setting)}>
                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
