@@ -1,3 +1,4 @@
-export { useLogin} from "./useLogin";
-export { useRegister } from "./userRegister";
-export { logout } from "./useLogout";
+export { useAddEvent } from './useAddEvent';
+export { useDeleteEvent } from './useDeleteEvent';
+export { useEventCard } from './useEventCard';
+export { useEventDetail} from './useEventDetail';

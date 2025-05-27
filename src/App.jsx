@@ -1,12 +1,10 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { routes } from "./routes.jsx";
-import "@fontsource/roboto"
+import { routes } from "./routes";
 
-
-export const App = () => {
-  let element = useRoutes(routes);
+function App() {
+  const element = useRoutes(routes);
 
   return (
     <div>
@@ -14,4 +12,6 @@ export const App = () => {
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
-};
+}
+
+export default App; // Exportación por defecto

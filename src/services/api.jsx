@@ -1,45 +1,38 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:3001/casaMiaManagement/v1', 
-    timeout: 3000, 
-    httpsAgent: false
-})
+  baseURL: 'http://localhost:3001/casaMiaManagement/v1',
+  timeout: 3000,
+});
 
-apiClient.interceptors.request.use(
-    (config) => {
-        const userDetails = localStorage.getItem("user")
+export const addEvent = async (data) => {
+  try {
+    return await apiClient.post('/event/create', data);
+  } catch (e) {
+    return { error: true, e };
+  }
+};
 
-        if(userDetails){
-            const token = JSON.parse(userDetails).token
-            config.headers.Authorization = `Bearer ${token}`
-        }
-        return config
-    },
-    (e) => {
-        return Promise.reject(e)
-    }
-)
+export const editEvent = async (hotelId, eventId, data) => {
+  try {
+    return await apiClient.put(`/event/edit/${hotelId}/${eventId}`, data);
+  } catch (e) {
+    return { error: true, e };
+  }
+};
 
-export const register = async (data) => {
-    try{
-        return await apiClient.post('/auth/register', data)
-    }catch(e){
-        return{
-            error: true,
-            e
-        }
-    }
-}
+export const deleteEvent = async (hotelId, eventId) => {
+  try {
+    return await apiClient.delete(`/event/delete/${hotelId}/${eventId}`);
+  } catch (e) {
+    return { error: true, e };
+  }
+};
 
-export const login = async (data) => {
-    try{
-        return await apiClient.post('/auth/login', data)
-    }catch(e){
-        return{
-            error: true,
-            e
-        }
-    }
-}
-
+export const getEventsByHotel = async (hotelId) => {
+  try {
+    return await apiClient.get(`/event/hotel/${hotelId}`);
+  } catch (e) {
+    return { error: true, e, message: "Error fetching events" };
+  }
+};

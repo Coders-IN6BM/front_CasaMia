@@ -1,0 +1,53 @@
+.event-card {
+  background-color: var(--light);
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgb(255, 255, 255);
+  transition: transform 0.2s;
+}   
+
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.897);
+}
+
+.event-card h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.event-card p {
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+}
+
+.event-card small {
+  display: block;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.event-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.event-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.event-actions button:first-child {
+  background-color: var(--primary);
+  color: rgb(0, 0, 0);
+}
+
+.event-actions button:last-child {
+  background-color: var(--secondary);
+  color: rgb(0, 0, 0);
+}

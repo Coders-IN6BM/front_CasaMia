@@ -1,0 +1,84 @@
+/* Paleta de colores base (ajústala) */
+:root {
+  --primary: #4a6fa5; /* Azul principal */
+  --secondary: #ff6b6b; /* Rojo coral */
+  --accent: #ffd166; /* Amarillo brillante */
+  --light: #f8f9fa; /* Fondo claro */
+  --dark: #343a40; /* Texto oscuro */
+  --success: #06d6a0; /* Verde para acciones */
+}
+
+.events-page {
+  padding: 2rem;
+  background-color: var(--light);
+  min-height: 100vh;
+}
+
+.events-header {
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.events-table th {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+}
+
+.events-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.events-table tr:last-child td {
+  border-bottom: none;
+}
+
+.events-table tr:hover {
+  background-color: #f1f3f5;
+}
+
+.event-highlight {
+  background-color: rgba(255, 214, 102, 0.2); /* Fondo amarillo suave */
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+}
+
+.event-highlight h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.event-highlight p {
+  color: var(--dark);
+  margin: 0.25rem 0;
+}
+
+.save-btn {
+  background-color: var(--success);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+  background-color: #05b58b;
+}
