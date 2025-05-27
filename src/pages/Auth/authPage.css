@@ -1,0 +1,30 @@
+.auth-background-video {
+  position: fixed;
+  z-index: 0;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.auth-background-overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7); /* oscurece el video */
+}
+
+.auth-container {
+  position: fixed;
+  z-index: 2;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
