@@ -8,9 +8,8 @@ import {
   validateEmailMessage,
   validatePassword,
   validatePasswordMessage,
-  validateUsername,
-  validateUsernameMessage,
 } from "../../shared/validators";
+import { validateUsername, validateUsernameMessage } from "../../shared/validators/validateUsername.jsx";
 import { useRegister } from "../../shared/hooks/userRegister.jsx";
 import { Box, Button, TextField, Typography, CircularProgress, Paper } from "@mui/material";
 
@@ -18,26 +17,13 @@ export const Register = ({ switchAuthHandler }) => {
   const { register, isLoading } = useRegister();
 
   const [formState, setFormState] = useState({
-    email: {
-      value: "",
-      isValid: false,
-      showError: false,
-    },
-    password: {
-      value: "",
-      isValid: false,
-      showError: false,
-    },
-    username: {
-      value: "",
-      isValid: false,
-      showError: false,
-    },
-    passwordConfirm: {
-      value: "",
-      isValid: false,
-      showError: false,
-    },
+    email: { value: "", isValid: false, showError: false },
+    password: { value: "", isValid: false, showError: false },
+    username: { value: "", isValid: false, showError: false },
+    passwordConfirm: { value: "", isValid: false, showError: false },
+    name: { value: "", isValid: false, showError: false },
+    surname: { value: "", isValid: false, showError: false },
+    phone: { value: "", isValid: false, showError: false },
   });
 
   const handleInputValueChange = (event) => {
@@ -67,6 +53,15 @@ export const Register = ({ switchAuthHandler }) => {
       case "passwordConfirm":
         isValid = validateConfirmPassword(formState.password.value, value);
         break;
+      case "name":
+        isValid = value.trim().length > 0 && value.length <= 25;
+        break;
+      case "surname":
+        isValid = value.trim().length > 0 && value.length <= 25;
+        break;
+      case "phone":
+        isValid = value.trim().length >= 8;
+        break;
       default:
         break;
     }
@@ -86,6 +81,9 @@ export const Register = ({ switchAuthHandler }) => {
       email: formState.email.value,
       password: formState.password.value,
       username: formState.username.value,
+      name: formState.name.value,
+      surname: formState.surname.value,
+      phone: formState.phone.value
     });
   };
 
@@ -94,7 +92,10 @@ export const Register = ({ switchAuthHandler }) => {
     !formState.email.isValid ||
     !formState.password.isValid ||
     !formState.username.isValid ||
-    !formState.passwordConfirm.isValid;
+    !formState.passwordConfirm.isValid ||
+    !formState.name.isValid ||
+    !formState.surname.isValid ||
+    !formState.phone.isValid;
 
   return (
     <Box
@@ -120,17 +121,28 @@ export const Register = ({ switchAuthHandler }) => {
         autoComplete="off"
       >
         <TextField
-          label="Ingresa tu email"
-          name="email"
-          value={formState.email.value}
+          label="Ingresa tu nombre"
+          name="name"
+          value={formState.name.value}
           onChange={handleInputValueChange}
           type="text"
           onBlur={handleInputValidationOnBlur}
-          error={formState.email.showError}
-          helperText={formState.email.showError ? validateEmailMessage : ""}
+          error={formState.name.showError}
+          helperText={formState.name.showError ? "El nombre es obligatorio y máximo 25 caracteres" : ""}
           fullWidth
           margin="normal"
-          autoComplete="email"
+        />
+        <TextField
+          label="Ingresa tu apellido"
+          name="surname"
+          value={formState.surname.value}
+          onChange={handleInputValueChange}
+          type="text"
+          onBlur={handleInputValidationOnBlur}
+          error={formState.surname.showError}
+          helperText={formState.surname.showError ? "El apellido es obligatorio y máximo 25 caracteres" : ""}
+          fullWidth
+          margin="normal"
         />
         <TextField
           label="Ingresa tu username"
@@ -144,6 +156,31 @@ export const Register = ({ switchAuthHandler }) => {
           fullWidth
           margin="normal"
           autoComplete="username"
+        />
+        <TextField
+          label="Ingresa tu email"
+          name="email"
+          value={formState.email.value}
+          onChange={handleInputValueChange}
+          type="text"
+          onBlur={handleInputValidationOnBlur}
+          error={formState.email.showError}
+          helperText={formState.email.showError ? validateEmailMessage : ""}
+          fullWidth
+          margin="normal"
+          autoComplete="email"
+        />
+        <TextField
+          label="Ingresa tu teléfono"
+          name="phone"
+          value={formState.phone.value}
+          onChange={handleInputValueChange}
+          type="text"
+          onBlur={handleInputValidationOnBlur}
+          error={formState.phone.showError}
+          helperText={formState.phone.showError ? "El teléfono debe tener al menos 8 caracteres" : ""}
+          fullWidth
+          margin="normal"
         />
         <TextField
           label="Ingresa tu contraseña"
