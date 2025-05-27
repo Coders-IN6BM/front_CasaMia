@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../shared/hooks/useLogout.jsx";
 
 const pages = ['SERVICIOS', 'HOTELES', 'EVENTOS'];
@@ -20,6 +21,7 @@ const casaMiaMainBlue = "#2563eb";
 export const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -42,6 +44,13 @@ export const Navbar = () => {
       logout();
     }
     // Aquí puedes manejar "Profile" si lo necesitas
+  };
+
+  const handlePageClick = (page) => {
+    handleCloseNavMenu();
+    if (page === "SERVICIOS") {
+      navigate("/servicios");
+    }
   };
 
   return (
@@ -115,7 +124,7 @@ export const Navbar = () => {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handlePageClick(page)}>
                   <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                 </MenuItem>
               ))}
@@ -154,7 +163,7 @@ export const Navbar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handlePageClick(page)}
                 sx={{
                   my: 2,
                   color: 'white',
